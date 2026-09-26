@@ -1,0 +1,5 @@
+worker
+*.exe
+*.test
+*.md
+.git/
