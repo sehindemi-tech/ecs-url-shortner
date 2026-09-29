@@ -1,4 +1,4 @@
-module github.com/CoderCo-Learning/url-shortener/services/worker
+module github.com/sehindemitech/ecs-v2/services/worker
 
 go 1.24
 

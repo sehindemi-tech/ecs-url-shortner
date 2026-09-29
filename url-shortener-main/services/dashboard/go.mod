@@ -1,4 +1,4 @@
-module github.com/CoderCo-Learning/url-shortener/services/dashboard
+module github.com/sehindemitech/ecs-v2/services/dashboard
 
 go 1.23
 
