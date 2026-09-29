@@ -1,14 +1,3 @@
-"""
-Database abstraction layer.
-
-Supports two backends:
-  - DynamoDB (default): set TABLE_NAME env var
-  - PostgreSQL (RDS):   set DATABASE_URL env var (e.g. postgresql://user:pass@host:5432/dbname)
-
-The backend is selected automatically based on which env var is set.
-If both are set, DATABASE_URL takes precedence.
-"""
-
 import os
 import logging
 
