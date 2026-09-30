@@ -45,3 +45,14 @@ variable "ecr_repositories" {
     error_message = "All repositories must be IMMUTABLE."
   }
 }
+
+
+variable "ssm_parameters" {
+  description = "SSM parameters for the Image tags"
+  type = map(object({
+    description = string
+    name        = string
+    type        = string
+    value       = string
+  }))
+}

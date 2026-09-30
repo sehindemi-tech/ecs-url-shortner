@@ -5,14 +5,8 @@ resource "aws_ssm_parameter" "this" {
   description = each.value.description
   type        = each.value.type
   value       = each.value.value
-}
 
-variable "ssm_parameters" {
-  description = "SSM parameters for the Image tags"
-  type = map(object({
-    description = string
-    name        = string
-    type        = string
-    value       = string
-  }))
+  lifecycle {
+    ignore_changes = [value]
+  }
 }
