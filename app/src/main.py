@@ -68,8 +68,6 @@ def resolve(short_id: str, request: Request):
     return RedirectResponse(item["url"])
 
 
-# Mount frontend last — after all API routes
-# html=True serves index.html for root path and any unmatched static paths
 _static_dir = os.environ.get("STATIC_DIR", "/app/static")
 if os.path.isdir(_static_dir):
     app.mount("/", StaticFiles(directory=_static_dir, html=True), name="frontend")

@@ -17,8 +17,6 @@ settings:
 sort:
   enabled: true
   by: name
-recursive:
-  enabled: true
 output:
   file: README.md
   mode: inject
