@@ -33,6 +33,7 @@ No modules.
 | [aws_s3_bucket_public_access_block.terraform_state_public_access_block](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/s3_bucket_public_access_block) | resource |
 | [aws_s3_bucket_server_side_encryption_configuration.server_side_kms](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/s3_bucket_server_side_encryption_configuration) | resource |
 | [aws_s3_bucket_versioning.terraform_states_versioning](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/s3_bucket_versioning) | resource |
+| [aws_ssm_parameter.this](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/ssm_parameter) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/data-sources/caller_identity) | data source |
 | [aws_ecr_lifecycle_policy_document.ecr_shortener_repos_lifecycle_policy](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/data-sources/ecr_lifecycle_policy_document) | data source |
 | [aws_iam_policy_document.role_policies](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/data-sources/iam_policy_document) | data source |
@@ -48,6 +49,7 @@ No modules.
 | <a name="input_ecr_repositories"></a> [ecr\_repositories](#input\_ecr\_repositories) | ECR repository settings | <pre>map(object({<br/>    image_tag_mutability = optional(string, "IMMUTABLE")<br/>    force_delete         = optional(bool, false)<br/>    encryption_type      = optional(string, "AES256")<br/>    scan_on_push         = optional(bool, true)<br/>  }))</pre> | n/a | yes |
 | <a name="input_project_settings"></a> [project\_settings](#input\_project\_settings) | The Project setting for the url-shortner | <pre>object({<br/>    aws_region                 = string<br/>    github_org                 = string<br/>    project_name               = string<br/>    github_repo                = string<br/>    environment                = string<br/>    github_repository_id       = string<br/>    github_repository_owner_id = string<br/>  })</pre> | n/a | yes |
 | <a name="input_s3_bucket_settings"></a> [s3\_bucket\_settings](#input\_s3\_bucket\_settings) | The S3 bucket settings for the project | <pre>map(object({<br/>    name          = string<br/>    force_destroy = optional(bool, false)<br/>    description   = optional(string)<br/>    versioning    = optional(bool, true)<br/>    sse_algorithm = optional(string, "aws:kms")<br/>  }))</pre> | n/a | yes |
+| <a name="input_ssm_parameters"></a> [ssm\_parameters](#input\_ssm\_parameters) | SSM parameters for the Image tags | <pre>map(object({<br/>    description = string<br/>    name        = string<br/>    type        = string<br/>    value       = string<br/>  }))</pre> | n/a | yes |
 
 ## Outputs
 
