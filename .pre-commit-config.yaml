@@ -41,7 +41,6 @@ repos:
         args:
           - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
         files: \.(tf|tfvars)$
-        # exclude:
 
       - id: terraform_trivy
         args:
