@@ -1,3 +1,16 @@
+variable "project_settings" {
+  description = "The Project setting for the url-shortner"
+  type = object({
+    aws_region                 = string
+    github_org                 = string
+    project_name               = string
+    github_repo                = string
+    environment                = string
+    github_repository_id       = string
+    github_repository_owner_id = string
+  })
+}
+
 variable "vpc_settings" {
   description = "Settings for the url_shortner VPC"
   type = object({
@@ -5,4 +18,15 @@ variable "vpc_settings" {
     enable_dns_support   = bool
     enable_dns_hostnames = bool
   })
+}
+
+
+variable "subnet_settings" {
+  description = "Subnet settings for the ecs-url-shortner"
+  type = map(object({
+    availability_zone       = string
+    cidr_block              = string
+    map_public_ip_on_launch = bool
+    is_public               = bool
+  }))
 }
