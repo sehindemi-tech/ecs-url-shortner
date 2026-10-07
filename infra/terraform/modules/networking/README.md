@@ -32,16 +32,23 @@ No modules.
 | [aws_subnet.private_subnets](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/subnet) | resource |
 | [aws_subnet.public_subnets](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/subnet) | resource |
 | [aws_vpc.url_shortner](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/vpc) | resource |
+| [aws_vpc_endpoint.gateway](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/vpc_endpoint) | resource |
+| [aws_vpc_endpoint.interface](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/vpc_endpoint) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_interface_endpoints"></a> [interface\_endpoints](#input\_interface\_endpoints) | A map of VPC endpoints to create | `list(string)` | n/a | yes |
 | <a name="input_project_settings"></a> [project\_settings](#input\_project\_settings) | The Project setting for the url-shortner | <pre>object({<br/>    aws_region                 = string<br/>    github_org                 = string<br/>    project_name               = string<br/>    github_repo                = string<br/>    environment                = string<br/>    github_repository_id       = string<br/>    github_repository_owner_id = string<br/>  })</pre> | n/a | yes |
 | <a name="input_subnet_settings"></a> [subnet\_settings](#input\_subnet\_settings) | Subnet settings for the ecs-url-shortner | <pre>map(object({<br/>    availability_zone       = string<br/>    cidr_block              = string<br/>    map_public_ip_on_launch = bool<br/>    is_public               = bool<br/>  }))</pre> | n/a | yes |
+| <a name="input_vpc_endpoint_security_group_id"></a> [vpc\_endpoint\_security\_group\_id](#input\_vpc\_endpoint\_security\_group\_id) | The security group ID to associate with interface VPC endpoints | `string` | n/a | yes |
 | <a name="input_vpc_settings"></a> [vpc\_settings](#input\_vpc\_settings) | Settings for the url\_shortner VPC | <pre>object({<br/>    cidr_block           = string<br/>    enable_dns_support   = bool<br/>    enable_dns_hostnames = bool<br/>  })</pre> | n/a | yes |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_s3_gateway_vpc_endpoint_id"></a> [s3\_gateway\_vpc\_endpoint\_id](#output\_s3\_gateway\_vpc\_endpoint\_id) | The ID of the S3 gateway VPC endpoint |
+| <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The ID of the VPC |
 <!-- END_TF_DOCS -->

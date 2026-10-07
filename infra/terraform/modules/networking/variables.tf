@@ -30,3 +30,13 @@ variable "subnet_settings" {
     is_public               = bool
   }))
 }
+
+variable "interface_endpoints" {
+  description = "A map of VPC endpoints to create"
+  type        = list(string)
+}
+
+variable "vpc_endpoint_security_group_id" {
+  description = "The security group ID to associate with interface VPC endpoints"
+  type        = string
+}

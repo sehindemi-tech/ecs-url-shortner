@@ -1,5 +1,6 @@
 resource "aws_subnet" "public_subnets" {
-  for_each                = { for key, value in var.subnet_settings : key => value if value.is_public }
+  for_each = { for key, value in var.subnet_settings : key => value if value.is_public }
+
   vpc_id                  = aws_vpc.url_shortner.id
   cidr_block              = each.value.cidr_block
   availability_zone       = each.value.availability_zone
@@ -12,7 +13,8 @@ resource "aws_subnet" "public_subnets" {
 }
 
 resource "aws_subnet" "private_subnets" {
-  for_each                = { for key, value in var.subnet_settings : key => value if !value.is_public }
+  for_each = { for key, value in var.subnet_settings : key => value if !value.is_public }
+
   vpc_id                  = aws_vpc.url_shortner.id
   cidr_block              = each.value.cidr_block
   availability_zone       = each.value.availability_zone
