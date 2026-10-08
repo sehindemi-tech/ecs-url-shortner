@@ -48,3 +48,21 @@ variable "s3_prefix_list_id" {
   description = "The prefix list ID for the S3 gateway endpoint."
   type        = string
 }
+
+
+variable "kms_keys" {
+  description = "A map of KMS keys to create"
+  type = map(object({
+    description             = string
+    deletion_window_in_days = number
+    enable_key_rotation     = bool
+    is_enabled              = bool
+    actions                 = optional(list(string))
+    allow_cloudwatch_logs   = optional(bool, false)
+  }))
+}
+
+variable "key_role_arns" {
+  description = "A map of KMS key names to the ARNs of IAM roles that should have access"
+  type        = map(list(string))
+}

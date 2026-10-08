@@ -11,6 +11,7 @@ variable "project_settings" {
   })
 }
 
+##Networking Module
 variable "vpc_settings" {
   description = "Settings for the url_shortner VPC"
   type = object({
@@ -34,6 +35,18 @@ variable "interface_endpoints" {
   description = "A map of VPC endpoints to create"
   type        = list(string)
 }
+
+variable "vpc_flow_log_settings" {
+  description = "VPC flow log settings"
+  type = object({
+    log_destination_type = string
+    traffic_type         = string
+  })
+}
+
+
+
+
 
 ## Security Module
 variable "security_groups" {
@@ -62,4 +75,34 @@ variable "sg_flows" {
     to   = string
     port = number
   }))
+}
+
+variable "kms_keys" {
+  description = "A map of KMS keys to create"
+  type = map(object({
+    description             = string
+    deletion_window_in_days = number
+    enable_key_rotation     = bool
+    is_enabled              = bool
+    actions                 = optional(list(string))
+    allow_cloudwatch_logs   = optional(bool, false)
+  }))
+}
+
+variable "key_role_arns" {
+  description = "A map of KMS key names to the ARNs of IAM roles that should have access"
+  type        = map(list(string))
+  default     = {}
+}
+
+
+## Monitoring Module
+variable "vpc_flow_logs_cloudwatch_log_group" {
+  description = "Settings for the CloudWatch log group used by VPC flow logs"
+  type = object({
+    name                        = string
+    retention_in_days           = number
+    deletion_protection_enabled = bool
+    log_group_class             = string
+  })
 }

@@ -5,7 +5,12 @@ module "networking" {
   project_settings               = var.project_settings
   interface_endpoints            = var.interface_endpoints
   vpc_endpoint_security_group_id = module.security.vpc_endpoint_security_group_id
-
+  vpc_flow_log_settings = merge(
+    var.vpc_flow_log_settings,
+    {
+      log_destination = module.monitoring.vpc_flow_log_cloudwatch_log_group_name
+    }
+  )
 }
 
 module "security" {
@@ -16,4 +21,13 @@ module "security" {
   security_groups   = var.security_groups
   sg_flows          = var.sg_flows
   s3_prefix_list_id = module.networking.s3_gateway_vpc_endpoint_id
+  kms_keys          = var.kms_keys
+  key_role_arns     = var.key_role_arns
+}
+
+module "monitoring" {
+  source                             = "../../modules/monitoring"
+  project_settings                   = var.project_settings
+  vpc_flow_logs_cloudwatch_log_group = var.vpc_flow_logs_cloudwatch_log_group
+
 }

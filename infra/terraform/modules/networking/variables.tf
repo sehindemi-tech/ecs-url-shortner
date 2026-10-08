@@ -40,3 +40,12 @@ variable "vpc_endpoint_security_group_id" {
   description = "The security group ID to associate with interface VPC endpoints"
   type        = string
 }
+
+variable "vpc_flow_log_settings" {
+  description = "VPC flow log settings"
+  type = object({
+    log_destination      = string
+    log_destination_type = string
+    traffic_type         = string
+  })
+}
