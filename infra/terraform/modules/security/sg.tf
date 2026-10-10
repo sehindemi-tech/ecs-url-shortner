@@ -8,6 +8,9 @@ resource "aws_security_group" "this" {
   tags = {
     Name = "${var.project_settings.project_name}-${each.key}"
   }
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 output "vpc_endpoint_security_group_id" {
@@ -29,8 +32,8 @@ resource "aws_vpc_security_group_ingress_rule" "internet_to_alb" {
 resource "aws_vpc_security_group_ingress_rule" "flow" {
   for_each = var.sg_flows
 
-  security_group_id            = aws_security_group.this[each.value.from].id
-  referenced_security_group_id = aws_security_group.this[each.value.to].id
+  security_group_id            = aws_security_group.this[each.value.to].id
+  referenced_security_group_id = aws_security_group.this[each.value.from].id
   description                  = "${each.value.from} to ${each.value.to}"
   from_port                    = each.value.port
   to_port                      = each.value.port

@@ -63,6 +63,30 @@ data "aws_iam_policy_document" "this" {
       }
     }
   }
+
+  dynamic "statement" {
+    for_each = each.value.allow_cloudwatch_alarms ? [1] : []
+
+    content {
+      sid    = "AllowCloudWatchAlarms"
+      effect = "Allow"
+      actions = [
+        "kms:Decrypt",
+        "kms:GenerateDataKey"
+      ]
+      resources = ["*"]
+
+      principals {
+        type        = "Service"
+        identifiers = ["cloudwatch.amazonaws.com"]
+      }
+      condition {
+        test     = "StringEquals"
+        variable = "aws:SourceAccount"
+        values   = [data.aws_caller_identity.current.account_id]
+      }
+    }
+  }
 }
 
 resource "aws_kms_alias" "this" {

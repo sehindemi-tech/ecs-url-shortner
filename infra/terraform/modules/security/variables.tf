@@ -59,6 +59,7 @@ variable "kms_keys" {
     is_enabled              = bool
     actions                 = optional(list(string))
     allow_cloudwatch_logs   = optional(bool, false)
+    allow_cloudwatch_alarms = optional(bool, false)
   }))
 }
 
