@@ -133,6 +133,31 @@ variable "ecs_running_task_alarms" {
   }))
 }
 
+variable "dlq_alarm" {
+  type = object({
+    comparison_operator = string
+    evaluation_periods  = number
+    metric_name         = string
+    namespace           = string
+    period              = number
+    statistic           = string
+    threshold           = number
+    actions_enabled     = bool
+    datapoints_to_alarm = number
+    treat_missing_data  = string
+  })
+  description = "Configuration for the DLQ CloudWatch alarm"
+}
+
+
+
+variable "dlq_name" {
+  type        = string
+  description = "The name of the Dlq"
+}
+
+
+### ECS Cluster and Service Names
 variable "cluster_name" {
   description = "ECS cluster name, as used in the ClusterName metric dimension."
   type        = string

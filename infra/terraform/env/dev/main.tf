@@ -35,4 +35,6 @@ module "monitoring" {
   ecs_running_task_alarms            = var.ecs_running_task_alarms
   cluster_name                       = var.cluster_name
   ecs_service_names                  = var.ecs_service_names
+  dlq_alarm                          = var.dlq_alarm
+  dlq_name                           = var.dlq_name
 }

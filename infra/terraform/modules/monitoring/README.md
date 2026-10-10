@@ -24,6 +24,7 @@ No modules.
 |------|------|
 | [aws_cloudwatch_log_group.this](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/cloudwatch_log_group) | resource |
 | [aws_cloudwatch_log_group.vpc_flow_log](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/cloudwatch_log_group) | resource |
+| [aws_cloudwatch_metric_alarm.dlq_alarm](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/cloudwatch_metric_alarm) | resource |
 | [aws_cloudwatch_metric_alarm.ecs_running_task_alarms](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/cloudwatch_metric_alarm) | resource |
 | [aws_sns_topic.this](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/sns_topic) | resource |
 | [aws_sns_topic_subscription.this](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/sns_topic_subscription) | resource |
@@ -35,6 +36,8 @@ No modules.
 | <a name="input_alert_email"></a> [alert\_email](#input\_alert\_email) | Email address to receive CloudWatch alarm notifications | `string` | n/a | yes |
 | <a name="input_cloudwatch_log_groups"></a> [cloudwatch\_log\_groups](#input\_cloudwatch\_log\_groups) | The cloudwatch log groups | <pre>map(object({<br/>    name                        = string<br/>    retention_in_days           = number<br/>    deletion_protection_enabled = bool<br/>    log_group_class             = string<br/>  }))</pre> | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | ECS cluster name, as used in the ClusterName metric dimension. | `string` | n/a | yes |
+| <a name="input_dlq_alarm"></a> [dlq\_alarm](#input\_dlq\_alarm) | Configuration for the DLQ CloudWatch alarm | <pre>object({<br/>    comparison_operator = string<br/>    evaluation_periods  = number<br/>    metric_name         = string<br/>    namespace           = string<br/>    period              = number<br/>    statistic           = string<br/>    threshold           = number<br/>    actions_enabled     = bool<br/>    datapoints_to_alarm = number<br/>    treat_missing_data  = string<br/>  })</pre> | n/a | yes |
+| <a name="input_dlq_name"></a> [dlq\_name](#input\_dlq\_name) | The name of the Dlq | `string` | n/a | yes |
 | <a name="input_ecs_running_task_alarms"></a> [ecs\_running\_task\_alarms](#input\_ecs\_running\_task\_alarms) | Configuration for ECS running task CloudWatch alarms | <pre>map(object({<br/>    comparison_operator = string<br/>    evaluation_periods  = number<br/>    metric_name         = string<br/>    namespace           = string<br/>    period              = number<br/>    statistic           = string<br/>    threshold           = number<br/>    actions_enabled     = bool<br/>    datapoints_to_alarm = number<br/>    treat_missing_data  = string<br/>  }))</pre> | n/a | yes |
 | <a name="input_ecs_service_names"></a> [ecs\_service\_names](#input\_ecs\_service\_names) | ECS service names keyed like ecs\_running\_task\_alarms. | `string` | n/a | yes |
 | <a name="input_kms_key_arn"></a> [kms\_key\_arn](#input\_kms\_key\_arn) | The ARN of the KMS key to use for encrypting CloudWatch log groups | `string` | n/a | yes |
