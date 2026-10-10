@@ -156,6 +156,26 @@ variable "dlq_name" {
   description = "The name of the Dlq"
 }
 
+variable "rds_alarm" {
+  type = object({
+    comparison_operator = string
+    evaluation_periods  = number
+    metric_name         = string
+    namespace           = string
+    period              = number
+    statistic           = string
+    threshold           = number
+    actions_enabled     = bool
+    datapoints_to_alarm = number
+    treat_missing_data  = string
+  })
+  description = "Configuration for the RDS CloudWatch alarm"
+}
+
+variable "db_instance_identifier" {
+  type        = string
+  description = "The identifier of the RDS DB instance"
+}
 
 ### ECS Cluster and Service Names
 variable "cluster_name" {

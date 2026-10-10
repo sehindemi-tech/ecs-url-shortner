@@ -37,4 +37,6 @@ module "monitoring" {
   ecs_service_names                  = var.ecs_service_names
   dlq_alarm                          = var.dlq_alarm
   dlq_name                           = var.dlq_name
+  rds_alarm                          = var.rds_alarm
+  db_instance_identifier             = var.db_instance_identifier
 }
