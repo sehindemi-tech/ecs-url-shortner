@@ -60,3 +60,9 @@ module "rds" {
   secrets_manager_kms_arn   = module.security.keys_arns["secrets_manager"]
 
 }
+
+module "elasticache" {
+  source             = "../../modules/elasticache"
+  project_settings   = var.project_settings
+  private_subnet_ids = module.networking.private_subnet_ids
+}

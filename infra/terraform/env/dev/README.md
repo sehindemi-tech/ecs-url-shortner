@@ -15,6 +15,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_dns"></a> [dns](#module\_dns) | ../../modules/dns | n/a |
+| <a name="module_elasticache"></a> [elasticache](#module\_elasticache) | ../../modules/elasticache | n/a |
 | <a name="module_monitoring"></a> [monitoring](#module\_monitoring) | ../../modules/monitoring | n/a |
 | <a name="module_networking"></a> [networking](#module\_networking) | ../../modules/networking | n/a |
 | <a name="module_rds"></a> [rds](#module\_rds) | ../../modules/rds | n/a |
