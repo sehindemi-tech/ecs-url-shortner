@@ -241,3 +241,17 @@ variable "db_instance" {
     username            = string
   })
 }
+
+
+###Elastic Cache
+variable "elasticache_family" {
+  description = "The family of the ElastiCache parameter group"
+  type        = string
+}
+
+variable "elasticache_parameters" {
+  description = "The parameters for the ElastiCache parameter group"
+  type = map(object({
+    value = string
+  }))
+}

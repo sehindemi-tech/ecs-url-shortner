@@ -62,7 +62,9 @@ module "rds" {
 }
 
 module "elasticache" {
-  source             = "../../modules/elasticache"
-  project_settings   = var.project_settings
-  private_subnet_ids = module.networking.private_subnet_ids
+  source                 = "../../modules/elasticache"
+  project_settings       = var.project_settings
+  private_subnet_ids     = module.networking.private_subnet_ids
+  elasticache_family     = var.elasticache_family
+  elasticache_parameters = var.elasticache_parameters
 }
