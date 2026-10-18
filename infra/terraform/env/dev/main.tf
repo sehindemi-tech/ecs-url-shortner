@@ -62,9 +62,12 @@ module "rds" {
 }
 
 module "elasticache" {
-  source                 = "../../modules/elasticache"
-  project_settings       = var.project_settings
-  private_subnet_ids     = module.networking.private_subnet_ids
-  elasticache_family     = var.elasticache_family
-  elasticache_parameters = var.elasticache_parameters
+  source                         = "../../modules/elasticache"
+  project_settings               = var.project_settings
+  private_subnet_ids             = module.networking.private_subnet_ids
+  elasticache_family             = var.elasticache_family
+  elasticache_parameters         = var.elasticache_parameters
+  elastic_cache_kms_arn          = module.security.keys_arns["elasticache"]
+  elasticache_security_group_ids = [module.security.security_group_ids["redis"]]
+  elasticache_replication_group  = var.elasticache_replication_group
 }

@@ -89,6 +89,7 @@ variable "kms_keys" {
     allow_cloudwatch_alarms = optional(bool, false)
     allow_secrets_manage    = optional(bool, false)
     allow_rds_use           = optional(bool, false)
+    allow_redis_use         = optional(bool, false)
   }))
 }
 
@@ -254,4 +255,28 @@ variable "elasticache_parameters" {
   type = map(object({
     value = string
   }))
+}
+
+
+variable "elasticache_replication_group" {
+  description = "The ElastiCache replication group configuration"
+  type = object({
+    replication_group_description = string
+    apply_immediately             = bool
+    at_rest_encryption_enabled    = bool
+    auth_token_update_strategy    = string
+    auto_minor_version_upgrade    = bool
+    engine                        = string
+    engine_version                = string
+    ip_discovery                  = string
+    maintenance_window            = string
+    multi_az_enabled              = bool
+    network_type                  = string
+    num_cache_clusters            = number
+    node_type                     = string
+    port                          = number
+    transit_encryption_enabled    = bool
+    transit_encryption_mode       = string
+    automatic_failover_enabled    = bool
+  })
 }

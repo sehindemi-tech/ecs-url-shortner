@@ -147,4 +147,38 @@ data "aws_iam_policy_document" "this" {
       }
     }
   }
+
+  dynamic "statement" {
+    for_each = each.value.allow_redis_use ? [1] : []
+
+    content {
+      sid    = "AllowRedisViaService"
+      effect = "Allow"
+      actions = [
+        "kms:CreateGrant",
+        "kms:DescribeKey"
+      ]
+      resources = ["*"]
+
+      principals {
+        type        = "AWS"
+        identifiers = ["*"]
+      }
+
+      condition {
+        test     = "StringEquals"
+        variable = "kms:CallerAccount"
+        values   = [data.aws_caller_identity.current.account_id]
+      }
+
+      condition {
+        test     = "StringEquals"
+        variable = "kms:ViaService"
+        values = [
+          "elasticache.eu-west-2.amazonaws.com",
+          "dax.eu-west-2.amazonaws.com"
+        ]
+      }
+    }
+  }
 }
