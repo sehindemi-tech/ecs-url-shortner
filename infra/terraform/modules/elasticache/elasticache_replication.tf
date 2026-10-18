@@ -1,4 +1,4 @@
-
+##False positive for Trivy AVD-AWS-0045 and AVD-AWS-0051
 #trivy:ignore:AVD-AWS-0045
 #trivy:ignore:AVD-AWS-0051
 resource "aws_elasticache_replication_group" "aws_elasticache_replication_group" {

@@ -112,8 +112,6 @@ data "aws_iam_policy_document" "this" {
         variable = "kms:ViaService"
         values   = ["secretsmanager.${var.project_settings.aws_region}.amazonaws.com"]
       }
-
-
     }
   }
 

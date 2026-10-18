@@ -69,5 +69,6 @@ module "elasticache" {
   elasticache_parameters         = var.elasticache_parameters
   elastic_cache_kms_arn          = module.security.keys_arns["elasticache"]
   elasticache_security_group_ids = [module.security.security_group_ids["redis"]]
+  secrets_manager_kms_arn        = module.security.keys_arns["secrets_manager"]
   elasticache_replication_group  = var.elasticache_replication_group
 }

@@ -56,3 +56,8 @@ variable "elasticache_replication_group" {
     automatic_failover_enabled    = bool
   })
 }
+
+variable "secrets_manager_kms_arn" {
+  description = "The KMS key ARN for the Secrets Manager secret"
+  type        = string
+}

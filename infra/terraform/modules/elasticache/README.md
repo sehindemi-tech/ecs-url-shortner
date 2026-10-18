@@ -27,6 +27,8 @@ No modules.
 | [aws_elasticache_parameter_group.elasticache_parameter_group](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/elasticache_parameter_group) | resource |
 | [aws_elasticache_replication_group.aws_elasticache_replication_group](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/elasticache_replication_group) | resource |
 | [aws_elasticache_subnet_group.elasticache_subnet_group](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/elasticache_subnet_group) | resource |
+| [aws_secretsmanager_secret.redis_url](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/secretsmanager_secret) | resource |
+| [aws_secretsmanager_secret_version.redis_url](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/secretsmanager_secret_version) | resource |
 | [random_password.auth](https://registry.terraform.io/providers/hashicorp/random/3.9.1/docs/resources/password) | resource |
 
 ## Inputs
@@ -40,8 +42,11 @@ No modules.
 | <a name="input_elasticache_security_group_ids"></a> [elasticache\_security\_group\_ids](#input\_elasticache\_security\_group\_ids) | The security group IDs for the ElastiCache replication group | `list(string)` | n/a | yes |
 | <a name="input_private_subnet_ids"></a> [private\_subnet\_ids](#input\_private\_subnet\_ids) | The IDs of the private subnets for the ElastiCache subnet group | `list(string)` | n/a | yes |
 | <a name="input_project_settings"></a> [project\_settings](#input\_project\_settings) | The Project setting for the url-shortner | <pre>object({<br/>    aws_region                 = string<br/>    github_org                 = string<br/>    project_name               = string<br/>    github_repo                = string<br/>    environment                = string<br/>    github_repository_id       = string<br/>    github_repository_owner_id = string<br/>  })</pre> | n/a | yes |
+| <a name="input_secrets_manager_kms_arn"></a> [secrets\_manager\_kms\_arn](#input\_secrets\_manager\_kms\_arn) | The KMS key ARN for the Secrets Manager secret | `string` | n/a | yes |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_redis_url_secret_arn"></a> [redis\_url\_secret\_arn](#output\_redis\_url\_secret\_arn) | The ARN of the Redis URL secret in AWS Secrets Manager |
 <!-- END_TF_DOCS -->
