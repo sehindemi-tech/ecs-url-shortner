@@ -5,19 +5,21 @@ resource "aws_internet_gateway" "igw" {
     Name = "${var.project_settings.project_name}-igw"
   }
 }
-resource "aws_nat_gateway" "ngw" {
-  allocation_id = aws_eip.ngw.id
-  subnet_id     = aws_subnet.public_subnets["Public_Subnets_1"].id
 
-  tags = {
-    Name = "${var.project_settings.project_name}-ngw"
-  }
-}
+## Destroy this
+# resource "aws_nat_gateway" "ngw" {
+#   allocation_id = aws_eip.ngw.id
+#   subnet_id     = aws_subnet.public_subnets["Public_Subnets_1"].id
 
-resource "aws_eip" "ngw" {
-  domain = "vpc"
+#   tags = {
+#     Name = "${var.project_settings.project_name}-ngw"
+#   }
+# }
 
-  tags = {
-    Name = "${var.project_settings.project_name}-ngw-eip"
-  }
-}
+# resource "aws_eip" "ngw" {
+#   domain = "vpc"
+
+#   tags = {
+#     Name = "${var.project_settings.project_name}-ngw-eip"
+#   }
+# }

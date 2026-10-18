@@ -22,12 +22,10 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_eip.ngw](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/eip) | resource |
 | [aws_flow_log.vpc_flow_log](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/flow_log) | resource |
 | [aws_iam_role.vpc_flow_log_role](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy.vpc_flow_log_role_policy](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/iam_role_policy) | resource |
 | [aws_internet_gateway.igw](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/internet_gateway) | resource |
-| [aws_nat_gateway.ngw](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/nat_gateway) | resource |
 | [aws_route_table.private](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/route_table) | resource |
 | [aws_route_table.public](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/route_table) | resource |
 | [aws_route_table_association.private](https://registry.terraform.io/providers/hashicorp/aws/6.62.0/docs/resources/route_table_association) | resource |
@@ -55,6 +53,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_private_subnet_ids"></a> [private\_subnet\_ids](#output\_private\_subnet\_ids) | The IDs of the private subnets |
 | <a name="output_s3_gateway_vpc_endpoint_id"></a> [s3\_gateway\_vpc\_endpoint\_id](#output\_s3\_gateway\_vpc\_endpoint\_id) | The ID of the S3 gateway VPC endpoint |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The ID of the VPC |
 <!-- END_TF_DOCS -->

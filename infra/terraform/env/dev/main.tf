@@ -40,3 +40,23 @@ module "monitoring" {
   rds_alarm                          = var.rds_alarm
   db_instance_identifier             = var.db_instance_identifier
 }
+
+module "dns" {
+  source                = "../../modules/dns"
+  project_settings      = var.project_settings
+  dashboard_domain_name = var.dashboard_domain_name
+}
+
+module "rds" {
+  source           = "../../modules/rds"
+  project_settings = var.project_settings
+  # vpc_id                    = module.networking.vpc_id
+  private_subnet_ids        = module.networking.private_subnet_ids
+  rds_kms_arn               = module.security.keys_arns["rds"]
+  db_parameter_group_family = var.db_parameter_group_family
+  db_parameters             = var.db_parameters
+  db_instance               = var.db_instance
+  rds_security_group_ids    = [module.security.security_group_ids["rds"]]
+  secrets_manager_kms_arn   = module.security.keys_arns["secrets_manager"]
+
+}

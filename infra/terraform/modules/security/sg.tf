@@ -13,11 +13,6 @@ resource "aws_security_group" "this" {
   }
 }
 
-output "vpc_endpoint_security_group_id" {
-  description = "The security group ID associated with interface VPC endpoints"
-  value       = aws_security_group.this["vpc_endpoints"].id
-}
-
 resource "aws_vpc_security_group_ingress_rule" "internet_to_alb" {
   for_each = var.alb_ingress_rules
 
