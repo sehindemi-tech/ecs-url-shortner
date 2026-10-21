@@ -75,6 +75,9 @@ module "elasticache" {
 
 
 module "sqs" {
-  source = "../../modules/sqs"
-  # project_settings = var.project_settings
+  source           = "../../modules/sqs"
+  project_settings = var.project_settings
+  dlq_settings     = var.dlq_settings
+  sqs_kms_key_id   = module.security.keys_arns["sqs"]
+  main_sqs_queue   = var.main_sqs_queue
 }

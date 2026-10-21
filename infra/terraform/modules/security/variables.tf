@@ -63,7 +63,8 @@ variable "kms_keys" {
     allow_secrets_manage    = optional(bool, false)
     allow_rds_use           = optional(bool, false)
     allow_redis_use         = optional(bool, false)
-
+    allow_sqs_producer_arns = optional(list(string), [])
+    allow_sqs_consumer_arns = optional(list(string), [])
 
   }))
 }

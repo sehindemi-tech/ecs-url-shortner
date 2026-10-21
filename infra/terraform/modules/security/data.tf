@@ -98,7 +98,7 @@ data "aws_iam_policy_document" "this" {
 
       principals {
         type        = "AWS"
-        identifiers = ["*"]
+        identifiers = ["*"] ## To delete after proper principal is set for Secrets Manager
       }
 
       condition {
@@ -125,11 +125,12 @@ data "aws_iam_policy_document" "this" {
         "kms:CreateGrant",
         "kms:DescribeKey"
       ]
+
       resources = ["*"]
 
       principals {
         type        = "AWS"
-        identifiers = ["*"]
+        identifiers = ["*"] ## To delete after proper principal is set for RDS
       }
 
       condition {
@@ -141,7 +142,7 @@ data "aws_iam_policy_document" "this" {
       condition {
         test     = "StringEquals"
         variable = "kms:ViaService"
-        values   = ["rds.eu-west-2.amazonaws.com"]
+        values   = ["rds.${var.project_settings.aws_region}.amazonaws.com"]
       }
     }
   }
@@ -153,14 +154,20 @@ data "aws_iam_policy_document" "this" {
       sid    = "AllowRedisViaService"
       effect = "Allow"
       actions = [
+        "kms:Decrypt",
+        "kms:Encrypt",
+        "kms:GenerateDataKey",
+        "kms:ReEncrypt*",
         "kms:CreateGrant",
         "kms:DescribeKey"
       ]
       resources = ["*"]
 
       principals {
-        type        = "AWS"
-        identifiers = ["*"]
+        type = "AWS"
+        identifiers = [
+          "*"
+        ] ## To delete after proper principal is set for ElastiCache
       }
 
       condition {
@@ -173,8 +180,55 @@ data "aws_iam_policy_document" "this" {
         test     = "StringEquals"
         variable = "kms:ViaService"
         values = [
-          "elasticache.eu-west-2.amazonaws.com",
+          "elasticache.${var.project_settings.aws_region}.amazonaws.com",
+          "dax.${var.project_settings.aws_region}.amazonaws.com"
         ]
+      }
+    }
+  }
+  dynamic "statement" {
+    for_each = length(each.value.allow_sqs_producer_arns) > 0 ? [1] : []
+
+    content {
+      sid    = "AllowSqsProducers"
+      effect = "Allow"
+      actions = [
+        "kms:Decrypt",
+        "kms:GenerateDataKey"
+      ]
+      resources = ["*"]
+
+      principals {
+        type        = "AWS"
+        identifiers = each.value.allow_sqs_producer_arns
+      }
+
+      condition {
+        test     = "StringEquals"
+        variable = "kms:ViaService"
+        values   = ["sqs.${var.project_settings.aws_region}.amazonaws.com"]
+      }
+    }
+  }
+
+  dynamic "statement" {
+    for_each = length(each.value.allow_sqs_consumer_arns) > 0 ? [1] : []
+
+    content {
+      sid       = "AllowSqsConsumers"
+      effect    = "Allow"
+      actions   = ["kms:Decrypt"]
+      resources = ["*"]
+
+      principals {
+        type        = "AWS"
+        identifiers = each.value.allow_sqs_consumer_arns
+      }
+
+      condition {
+        test     = "StringEquals"
+        variable = "kms:ViaService"
+        values   = ["sqs.${var.project_settings.aws_region}.amazonaws.com"]
       }
     }
   }

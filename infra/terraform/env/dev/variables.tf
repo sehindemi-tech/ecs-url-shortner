@@ -90,6 +90,8 @@ variable "kms_keys" {
     allow_secrets_manage    = optional(bool, false)
     allow_rds_use           = optional(bool, false)
     allow_redis_use         = optional(bool, false)
+    allow_sqs_producer_arns = optional(list(string), [])
+    allow_sqs_consumer_arns = optional(list(string), [])
   }))
 }
 
@@ -278,5 +280,26 @@ variable "elasticache_replication_group" {
     transit_encryption_enabled    = bool
     transit_encryption_mode       = string
     automatic_failover_enabled    = bool
+  })
+}
+
+
+####SQS
+
+variable "dlq_settings" {
+  description = "The Dead Letter Queue settings for the SQS"
+
+  type = object({
+    fifo_queue                = bool
+    message_retention_seconds = number
+  })
+}
+
+variable "main_sqs_queue" {
+  description = "The main SQS queue settings"
+  type = object({
+    fifo_queue                 = bool
+    message_retention_seconds  = number
+    visibility_timeout_seconds = number
   })
 }
