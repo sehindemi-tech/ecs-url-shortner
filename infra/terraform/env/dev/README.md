@@ -20,6 +20,7 @@ No providers.
 | <a name="module_networking"></a> [networking](#module\_networking) | ../../modules/networking | n/a |
 | <a name="module_rds"></a> [rds](#module\_rds) | ../../modules/rds | n/a |
 | <a name="module_security"></a> [security](#module\_security) | ../../modules/security | n/a |
+| <a name="module_sqs"></a> [sqs](#module\_sqs) | ../../modules/sqs | n/a |
 
 ## Resources
 

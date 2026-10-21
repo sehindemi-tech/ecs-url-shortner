@@ -174,7 +174,6 @@ data "aws_iam_policy_document" "this" {
         variable = "kms:ViaService"
         values = [
           "elasticache.eu-west-2.amazonaws.com",
-          "dax.eu-west-2.amazonaws.com"
         ]
       }
     }

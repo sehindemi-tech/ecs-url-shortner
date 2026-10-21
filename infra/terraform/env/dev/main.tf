@@ -72,3 +72,9 @@ module "elasticache" {
   secrets_manager_kms_arn        = module.security.keys_arns["secrets_manager"]
   elasticache_replication_group  = var.elasticache_replication_group
 }
+
+
+module "sqs" {
+  source = "../../modules/sqs"
+  # project_settings = var.project_settings
+}
