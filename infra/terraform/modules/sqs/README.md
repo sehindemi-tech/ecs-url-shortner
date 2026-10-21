@@ -38,5 +38,12 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_dlq_sqs_queue_arn"></a> [dlq\_sqs\_queue\_arn](#output\_dlq\_sqs\_queue\_arn) | The ARN of the dead-letter SQS queue |
+| <a name="output_dlq_sqs_queue_name"></a> [dlq\_sqs\_queue\_name](#output\_dlq\_sqs\_queue\_name) | The name of the dead-letter SQS queue |
+| <a name="output_dlq_sqs_queue_url"></a> [dlq\_sqs\_queue\_url](#output\_dlq\_sqs\_queue\_url) | The URL of the dead-letter SQS queue |
+| <a name="output_sqs_queue_arn"></a> [sqs\_queue\_arn](#output\_sqs\_queue\_arn) | The ARN of the main SQS queue |
+| <a name="output_sqs_queue_name"></a> [sqs\_queue\_name](#output\_sqs\_queue\_name) | The name of the main SQS queue |
+| <a name="output_sqs_queue_url"></a> [sqs\_queue\_url](#output\_sqs\_queue\_url) | The URL of the main SQS queue |
 <!-- END_TF_DOCS -->
