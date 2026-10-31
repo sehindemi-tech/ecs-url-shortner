@@ -54,6 +54,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_private_subnet_ids"></a> [private\_subnet\_ids](#output\_private\_subnet\_ids) | The IDs of the private subnets |
+| <a name="output_public_subnet_ids"></a> [public\_subnet\_ids](#output\_public\_subnet\_ids) | The IDs of the public subnets |
 | <a name="output_s3_gateway_vpc_endpoint_id"></a> [s3\_gateway\_vpc\_endpoint\_id](#output\_s3\_gateway\_vpc\_endpoint\_id) | The ID of the S3 gateway VPC endpoint |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The ID of the VPC |
 <!-- END_TF_DOCS -->

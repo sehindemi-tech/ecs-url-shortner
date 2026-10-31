@@ -326,3 +326,21 @@ variable "s3_access_logs_setting" {
     })
   })
 }
+
+variable "alb_settings" {
+  description = "Settings for the ALB"
+  type = object({
+    internal                         = bool
+    ip_address_type                  = string
+    load_balancer_type               = string
+    drop_invalid_header_fields       = bool
+    enable_cross_zone_load_balancing = bool
+    enable_deletion_protection       = bool
+    enable_http2                     = bool
+    enable_zonal_shift               = bool
+    idle_timeout_seconds             = number
+    health_check_log_enabled         = bool
+    access_logs_enabled              = bool
+    connection_logs_enabled          = bool
+  })
+}

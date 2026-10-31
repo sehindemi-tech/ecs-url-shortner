@@ -86,4 +86,7 @@ module "alb" {
   source                 = "../../modules/alb"
   project_settings       = var.project_settings
   s3_access_logs_setting = var.s3_access_logs_setting
+  alb_settings           = var.alb_settings
+  alb_security_groups    = [module.security.security_group_ids["alb"]]
+  public_subnets         = module.networking.public_subnet_ids
 }
