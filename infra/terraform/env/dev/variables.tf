@@ -303,3 +303,26 @@ variable "main_sqs_queue" {
     visibility_timeout_seconds = number
   })
 }
+
+
+###ALB
+variable "s3_access_logs_setting" {
+  description = "Settings for the S3 access logs bucket"
+  type = object({
+    s3_bucket = object({
+      force_destroy = bool
+    })
+    sse_encrytption = object({
+      sse_algorithm = string
+    })
+    lifecycle = object({
+      id                                     = string
+      status                                 = string
+      noncurrent_days                        = number
+      newer_noncurrent_versions              = number
+      abort_incomplete_multipart_upload_days = number
+      expiration_days                        = number
+      transition_default_minimum_object_size = string
+    })
+  })
+}

@@ -81,3 +81,9 @@ module "sqs" {
   sqs_kms_key_id   = module.security.keys_arns["sqs"]
   main_sqs_queue   = var.main_sqs_queue
 }
+
+module "alb" {
+  source                 = "../../modules/alb"
+  project_settings       = var.project_settings
+  s3_access_logs_setting = var.s3_access_logs_setting
+}
