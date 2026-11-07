@@ -45,6 +45,11 @@ module "dns" {
   source                = "../../modules/dns"
   project_settings      = var.project_settings
   dashboard_domain_name = var.dashboard_domain_name
+  alb_settings = {
+    dns_name = module.alb.alb_dns_name
+    zone_id  = module.alb.alb_zone_id
+  }
+  records = var.records
 }
 
 module "rds" {
@@ -83,10 +88,19 @@ module "sqs" {
 }
 
 module "alb" {
-  source                 = "../../modules/alb"
-  project_settings       = var.project_settings
-  s3_access_logs_setting = var.s3_access_logs_setting
-  alb_settings           = var.alb_settings
-  alb_security_groups    = [module.security.security_group_ids["alb"]]
-  public_subnets         = module.networking.public_subnet_ids
+  source                   = "../../modules/alb"
+  project_settings         = var.project_settings
+  s3_access_logs_setting   = var.s3_access_logs_setting
+  alb_settings             = var.alb_settings
+  alb_security_groups      = [module.security.security_group_ids["alb"]]
+  public_subnets           = module.networking.public_subnet_ids
+  target_group_name_prefix = var.target_group_name_prefix
+  target_groups            = var.target_groups
+  health_check             = var.health_check
+  vpc_id                   = module.networking.vpc_id
+  http_listener            = var.http_listener
+  https_listener           = var.https_listener
+  acm_arn                  = module.dns.acm_arn
+  listener_rules           = var.listener_rules
+  test_listener            = var.test_listener
 }

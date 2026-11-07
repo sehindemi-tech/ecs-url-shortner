@@ -15,3 +15,19 @@ variable "dashboard_domain_name" {
   description = "The domain name for the dashboard to be included as a subject alternative name in the ACM certificate."
   type        = string
 }
+
+variable "alb_settings" {
+  description = "ALB settings"
+  type = object({
+    dns_name = string
+    zone_id  = string
+  })
+}
+
+variable "records" {
+  description = "Map of DNS records"
+  type = map(object({
+    name = string
+    type = string
+  }))
+}
